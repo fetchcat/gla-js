@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="<%= htmlWebpackPlugin.options.metaDesc %>" />
+    <title><%= htmlWebpackPlugin.options.title %></title>
+  </head>
+  <body>
+    <header><%= htmlWebpackPlugin.options.header %></header>
+    <div class="container">
+      <div id="add-item" class="add-item">
+        <input type="text" placeholder="Add Item..." id="item-text" />
+        <button class="add" id="add-item-list"><i class="fas fa-plus-circle"></i></button>
+      </div>
+      <div id="messages"></div>
+    </div>
+    <div id="list" class="list saved"></div>
+  </body>
+</html>

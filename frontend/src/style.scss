@@ -1,0 +1,184 @@
+/* Import Roboto Font */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* Import Font Awesome Icons */
+
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+
+/* Variables and Mixins */
+
+$color1: #2b2d42;
+$color2: #e86a92;
+$color3: #f7e733;
+$color4: #f7f7f9;
+$color5: #3bcba7;
+
+$color6: #d5d5d9;
+$color7: #1a1b28;
+$color8: #eaeaec;
+
+@mixin flex-centered() {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-inline-column() {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* CSS Reset */
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+/*  */
+
+body {
+  font-family: 'Roboto', sans-serif;
+  min-height: 100vh;
+  min-width: 300px;
+  @include flex-inline-column;
+}
+
+header {
+  background-color: $color1;
+  color: $color4;
+  font-weight: bold;
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+  padding: 20px 0px;
+  font-size: 28px;
+}
+
+button {
+  border: none;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  &:hover {
+    filter: brightness(110%);
+  }
+  height: 50px;
+  width: 50px;
+}
+
+button.check {
+  color: #ffffff;
+  background-color: $color2;
+}
+
+button.add {
+  color: #ffffff;
+  background-color: $color5;
+}
+
+.container {
+  @include flex-centered();
+  width: 100%;
+  background-color: $color6;
+  padding: 20px;
+}
+
+.list {
+  margin-top: 30px;
+  height: 0;
+  transition: height 0.2s;
+}
+
+.list.saved {
+  height: 100vh;
+}
+
+.image {
+  margin: 20px;
+}
+
+.item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 250px;
+  margin-bottom: 5px;
+  background-color: $color8;
+  padding-left: 15px;
+  height: 0;
+  transition: height 0.1s;
+  color: $color7;
+}
+
+.item.saved {
+  height: 50px;
+}
+
+.delete {
+  color: $color4;
+  background-color: $color2;
+  text-decoration-line: line-through;
+}
+
+.add-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 250px;
+  input {
+    width: 200px;
+    background-color: $color4;
+    padding-left: 10px;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    outline: none;
+    color: $color1;
+  }
+}
+
+#messages {
+  width: 250px;
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  background-color: $color4;
+}
+
+.start {
+  background-color: $color2;
+  font-size: 16px;
+  font-weight: bold;
+  color: $color4;
+  height: 0;
+  transition: height 0.2s;
+}
+
+.start.saved {
+  height: 50px;
+}
+
+.error {
+  color: $color2 !important;
+}
+
+.error-message {
+  padding: 10px;
+  background-color: $color2;
+  width: 100%;
+  color: $color4;
+  font-weight: bold;
+}

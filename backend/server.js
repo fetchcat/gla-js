@@ -1,35 +1,55 @@
-// Enviroment Variables
+const mongoose = require("mongoose");
+const express = require("express");
+const app = express();
+const cors = require("cors");
+
+const itemRoutes = require("./routes/itemRoutes");
+
+// --- ENV --- //
 
 require("dotenv").config();
 
-// Express
+const port = process.env.PORT || 5000;
+const server = process.env.SERVER;
+const database = process.env.DB;
+const env = process.env.NODE_ENV;
 
-const express = require("express");
-const app = express();
-const port = process.env.PORT || 5500;
+// --- Connect to MongoDB, then start Express --- //
 
-//const cors = require("cors");
+const startBackend = async () => {
+  try {
+    await mongoose.connect(`${server}/${database}`, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log(`> Connected to database`);
+    app.listen(port, () => {
+      console.log(`> Server is listening on port: ${port}...`);
+    });
+  } catch (error) {
+    console.error("> Error connecting to DB", error);
+  }
+};
 
-//app.use(cors());
+startBackend();
 
-// Mongoose Connect
+// --- JSON Parsing --- //
 
-let mongoose = require("mongoose");
-let mongoDB = process.env.MONGODB_URI;
-mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
-
-const db = mongoose.connection;
-db.on("error", (error) => console.error(error));
-db.once("open", () => console.log("Connected to database"));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// Routes
+// Use CORS if in development mode
 
-const itemsRouter = require("./routes/items");
-app.use("/items", itemsRouter);
+if (env === "development") {
+  app.use(
+    cors({
+      origin: "http://localhost:9000",
+      credentials: true,
+      methods: ["GET", "POST", "PUT", "DELETE"],
+    })
+  );
+}
 
-// App Listen
+// --- Routes --- //
 
-app.listen(port, () => {
-  console.log(`GroceryApp Back End listening on port: ${port}`);
-});
+app.use("/items", itemRoutes);
