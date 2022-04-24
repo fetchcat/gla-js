@@ -24,7 +24,7 @@ const startBackend = async () => {
     });
     console.log(`> Connected to database`);
     app.listen(port, () => {
-      console.log(`> Server is listening on port: ${port}...`);
+      console.log(`> GLA-JS backend listening on port: ${port}`);
     });
   } catch (error) {
     console.error("> Error connecting to DB", error);
@@ -43,7 +43,7 @@ app.use(express.urlencoded({ extended: true }));
 if (env === "development") {
   app.use(
     cors({
-      origin: "http://localhost:9000",
+      origin: "http://localhost:3000",
       credentials: true,
       methods: ["GET", "POST", "PUT", "DELETE"],
     })
