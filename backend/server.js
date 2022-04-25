@@ -52,4 +52,4 @@ if (env === "development") {
 
 // --- Routes --- //
 
-app.use("/items", itemRoutes);
+app.use("/api/glajs/items", itemRoutes);
