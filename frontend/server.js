@@ -2,9 +2,9 @@ require("dotenv").config();
 
 const express = require("express");
 const app = express();
-const port = process.env.PORT || 3002;
+const port = process.env.PORT || 3009;
 
-app.use("/apps/glajs", express.static("public"));
+app.use("/apps/myglalist", express.static("public"));
 
 app.get("/", (req, res) => {
   res.send("GLA-JS");
