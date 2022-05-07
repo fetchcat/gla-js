@@ -7,7 +7,7 @@ const messages = document.getElementById("messages");
 
 // Back End URL
 
-const serverUrl = "https://fetchcat.ca/api/glajs/items";
+const serverUrl = "/api/items";
 
 // Imported Libraries
 
