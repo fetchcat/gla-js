@@ -31,8 +31,6 @@ const startBackend = async () => {
   }
 };
 
-startBackend();
-
 // --- JSON Parsing --- //
 
 app.use(express.json());
@@ -52,3 +50,7 @@ if (env === "production") {
 // --- Routes --- //
 
 app.use("/api/items", itemRoutes);
+
+// --- Initialize --- //
+
+startBackend();
