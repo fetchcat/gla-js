@@ -36,6 +36,10 @@ const startBackend = async () => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// --- Routes --- //
+
+app.use("/api/items", itemRoutes);
+
 // --- Serve frontend static files in production --- //
 
 if (env === "production") {
@@ -46,10 +50,6 @@ if (env === "production") {
       res.sendFile(path.resolve(__dirname, "../frontend/build", "index.html"));
     };
 }
-
-// --- Routes --- //
-
-app.use("/api/items", itemRoutes);
 
 // --- Initialize --- //
 
