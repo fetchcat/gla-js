@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const express = require("express");
 const app = express();
-const cors = require("cors");
+const path = require("path");
 
 const itemRoutes = require("./routes/itemRoutes");
 
@@ -38,18 +38,17 @@ startBackend();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Use CORS if in development mode
+// --- Serve frontend static files in production --- //
 
-if (env === "development") {
-  app.use(
-    cors({
-      origin: "http://localhost:3000",
-      credentials: true,
-      methods: ["GET", "POST", "PUT", "DELETE"],
-    })
-  );
+if (env === "production") {
+  app.use(express.static(path.resolve(__dirname, "../frontend/public")));
+
+  app.get("*"),
+    function (req, res) {
+      res.sendFile(path.resolve(__dirname, "../frontend/build", "index.html"));
+    };
 }
 
 // --- Routes --- //
 
-app.use("/api/glajs/items", itemRoutes);
+app.use("/api/items", itemRoutes);
