@@ -43,7 +43,7 @@ app.use("/api/items", itemRoutes);
 // --- Serve frontend static files in production --- //
 
 if (env === "production") {
-  app.use(express.static(path.resolve(__dirname, "../frontend/public")));
+  app.use(express.static(path.resolve(__dirname, "../frontend/build")));
 
   app.get("*"),
     function (req, res) {
