@@ -24,7 +24,7 @@ const startBackend = async () => {
     });
     console.log(`> Connected to database`);
     app.listen(port, () => {
-      console.log(`> GLA-JS backend listening on port: ${port}`);
+      console.log(`> GLA-JS listening on port: ${port}`);
     });
   } catch (error) {
     console.error("> Error connecting to DB", error);
