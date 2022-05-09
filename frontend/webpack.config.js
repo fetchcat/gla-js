@@ -71,15 +71,15 @@ module.exports = (_, { mode }) => ({
   },
   output: {
     filename: "app.bundle.js",
-    path: path.resolve(__dirname, "public"),
+    path: path.resolve(__dirname, "build"),
     clean: true,
   },
   devServer: {
     static: {
-      directory: path.join(__dirname, "public"),
+      directory: path.join(__dirname, "build"),
     },
     compress: true,
-    port: 9000,
+    port: 3000,
     proxy: {
       "/api": `http://localhost:5000`,
     },

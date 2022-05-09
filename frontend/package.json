@@ -35,7 +35,6 @@
   },
   "dependencies": {
     "axios": "^0.26.1",
-    "dotenv": "^16.0.0",
     "mongodb": "^4.2.2"
   }
 }

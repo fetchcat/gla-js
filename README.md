@@ -15,17 +15,33 @@ Be sure to create a backend/.env file set the following Environment Variables:
 
 ## Scripts
 
-To start backend (with nodemon)
+### Frontend
 
-> yarn server
-
-To start frontend (Development)
+Webpack Dev Server
 
 > yarn serve
 
-To build frontend (Production)
+Production Build
 
 > yarn build
+
+Webpack watch
+
+> yarn watch
+
+### Backend
+
+Install packages for both frontend and backend
+
+> yarn node-install
+
+Run backend and webpack dev server (Dev Environment)
+
+> yarn dev
+
+Deploy to production environment (build frontend files and add backend server to PM2)
+
+> yarn deploy
 
 ## Tags
 
