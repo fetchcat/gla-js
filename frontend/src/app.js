@@ -7,7 +7,7 @@ const messages = document.getElementById("messages");
 
 // Back End URL
 
-const serverUrl = "/api/items";
+const serverUrl = "https://test-gla.uw.r.appspot.com/api";
 
 // Imported Libraries
 

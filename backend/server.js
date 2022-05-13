@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const express = require("express");
 const app = express();
-const path = require("path");
+const cors = require("cors");
 
 const itemRoutes = require("./routes/itemRoutes");
 
@@ -9,12 +9,38 @@ const itemRoutes = require("./routes/itemRoutes");
 
 require("dotenv").config();
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 8080;
 const server = process.env.SERVER;
 const database = process.env.DB;
-const env = process.env.NODE_ENV;
 
 // --- Connect to MongoDB, then start Express --- //
+
+app.use(
+  cors({
+    origin: "https://frontend-dot-test-gla.uw.r.appspot.com",
+    methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
+  })
+);
+
+// --- JSON Parsing --- //
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// --- Routes --- //
+
+app.use("/api", itemRoutes);
+
+// --- Serve frontend static files in production --- //
+
+// if (env === "production") {
+//   app.use(express.static(path.resolve(__dirname, "build")));
+
+//   app.get("*"),
+//     function (req, res) {
+//       res.sendFile(path.resolve(__dirname, "build", "index.html"));
+//     };
+// }
 
 const startBackend = async () => {
   try {
@@ -33,22 +59,8 @@ const startBackend = async () => {
 
 startBackend();
 
-// --- JSON Parsing --- //
+app.get("/", (req, res) => {
+  res.status(200).send("GLA App").end();
+});
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-// --- Serve frontend static files in production --- //
-
-if (env === "production") {
-  app.use(express.static(path.resolve(__dirname, "../frontend/public")));
-
-  app.get("*"),
-    function (req, res) {
-      res.sendFile(path.resolve(__dirname, "../frontend/build", "index.html"));
-    };
-}
-
-// --- Routes --- //
-
-app.use("/api/items", itemRoutes);
+module.exports = app;
