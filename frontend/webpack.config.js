@@ -79,7 +79,7 @@ module.exports = (_, { mode }) => ({
       directory: path.join(__dirname, "build"),
     },
     compress: true,
-    port: 9000,
+    port: 3000,
     proxy: {
       "/api": `http://localhost:5000`,
     },

@@ -166,7 +166,7 @@ function populateList() {
         <div id=${id} class='item saved'>
           ${item.name}
           <button class='delete'>
-            <i class='fas fa-check-square'></i>
+            <i class='fas fa-check'></i>
           </button>
         </div>
       `;
